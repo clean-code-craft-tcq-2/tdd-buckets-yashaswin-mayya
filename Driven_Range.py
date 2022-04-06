@@ -10,7 +10,7 @@ class driven_range:
         analogValueRange=[]
         maxDigitalValue, scale, offset = self.sensorParameters(ADC_Sensor_Type)
         for digitalValue in digitalValueRange:
-            if (0<=digitalValue and digitalValue<=maxDigitalValue):
+            if (digitalValue<=maxDigitalValue): #0<=digitalValue and 
                 analogValue = abs(round((scale*digitalValue/maxDigitalValue)-offset))
                 analogValueRange.append(analogValue)
         return analogValueRange
@@ -47,7 +47,7 @@ class driven_range:
         rangeCloserPosition = listBeginPosition
         for i in range(listBeginPosition+1, len(self.inputData)):
             differenceInValues = (self.inputData[i]-self.inputData[rangeCloserPosition])
-            if(differenceInValues==0 or differenceInValues==1):
+            if(differenceInValues<2): #differenceInValues==0 or differenceInValues==1
                 rangeCloserPosition = i
         return rangeCloserPosition
     
