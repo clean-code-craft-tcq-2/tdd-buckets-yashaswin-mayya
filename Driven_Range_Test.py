@@ -1,5 +1,5 @@
 from Driven_Range import *
-from Analog2Digital import *
+import Driven_Range
 import unittest
 
 class driven_range_test(unittest.TestCase):
@@ -15,6 +15,6 @@ class driven_range_test(unittest.TestCase):
         self.assertTrue(driven_range().main([]) == {})
 
     def test_a2dConvertion(self):
-        self.assertTrue(A2D().convertAnalogToDigital([1000], 12) == {'2-2':1})
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([1000], Driven_Range.ADC_12Bits)) == {'2-2':'1'})
 
 unittest.main()
