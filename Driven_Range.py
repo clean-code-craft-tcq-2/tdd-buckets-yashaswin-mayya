@@ -1,5 +1,3 @@
-ADC_12Bits = {'maxDigitalValue': 4094, 'scale': 10, 'offset': 0}
-ADC_10Bits = {'maxDigitalValue': 1023, 'scale': 30, 'offset': 15}
 
 class driven_range:
 
@@ -10,11 +8,24 @@ class driven_range:
     
     def convertAnalogToDigital(self, digitalValueRange, ADC_Sensor_Type):
         analogValueRange=[]
+        maxDigitalValue, scale, offset = self.sensorParameters(ADC_Sensor_Type)
         for digitalValue in digitalValueRange:
-            if (0<=digitalValue and digitalValue<=ADC_Sensor_Type['maxDigitalValue']):
-                analogValue = (round((ADC_Sensor_Type['scale']*digitalValue/ADC_Sensor_Type['maxDigitalValue'])-ADC_Sensor_Type['offset']))
+            if (0<=digitalValue and digitalValue<=maxDigitalValue):
+                analogValue = (round((scale*digitalValue/maxDigitalValue)-offset))
                 analogValueRange.append(analogValue)
         return analogValueRange
+    
+    def sensorParameters(self, ADC_Sensor_Type):
+        if (ADC_Sensor_Type == '12Bits'):
+            maxDigitalValue = 4094
+            scale = 10
+            offset = 0
+        else:
+            maxDigitalValue = 1023
+            scale = 30
+            offset = 15
+        return maxDigitalValue, scale, offset
+
 
   
     def getRangeListInfo(self):

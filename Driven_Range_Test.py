@@ -15,6 +15,9 @@ class driven_range_test(unittest.TestCase):
         self.assertTrue(driven_range().main([]) == {})
 
     def test_a2dConvertion(self):
-        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([1000], Driven_Range.ADC_12Bits)) == {'2-2':'1'})
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([1000], '12Bits')) == {'2-2':'1'})
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([-1,4095], '12Bits')) == {})
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([1000], '10Bits')) == {'14-14':'1'})
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([-1,1024], '10Bits')) == {})
 
 unittest.main()
