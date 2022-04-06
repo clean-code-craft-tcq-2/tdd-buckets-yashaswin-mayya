@@ -40,4 +40,4 @@ class driven_range:
         return rangeResult
     
     def printOnConsole(self, rangeResult):
-        print(rangeResult)
+        print(f'{rangeResult}\n')
