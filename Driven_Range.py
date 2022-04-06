@@ -30,6 +30,7 @@ class driven_range:
         return rangeCloserPosition
     
     def generateResult(self):
+        self.printOnConsole('Range, Result')
         rangeInfoList = self.getRangeListInfo()
         rangeResult = {}
         for rangeInfo in rangeInfoList:
@@ -37,7 +38,8 @@ class driven_range:
             freqData = f'{rangeInfo[2]}'
             rangeResult.update({rangeData: freqData})
             self.printOnConsole(f'{rangeData}, {freqData}')
+        self.printOnConsole('\n')
         return rangeResult
     
     def printOnConsole(self, rangeResult):
-        print(f'{rangeResult}\n')
+        print(rangeResult)
