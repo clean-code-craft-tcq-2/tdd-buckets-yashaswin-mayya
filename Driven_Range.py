@@ -6,7 +6,21 @@ class driven_range:
         self.inputData = inputData.copy()
         return self.generateResult()
     
-    def convertAnalogToDigital(self, digitalValueRange, ADC_Sensor_Type):
+    def convertDigitalToAnalog(self, digitalValueRange, ADC_Sensor_Type):
+        # Formula used to convert Digital to Analog:
+        # 
+        # Analog_Value = ((Scale * Digital_Value) / Max._Digital_Value_permissible) - Offset
+        # 
+        # For 12 Bit:
+        #   Scale = 10                              [10A - 0A = 10]
+        #   Max._Digital_Value_permissible = 4094
+        #   Offset = 0                              [As no Negative reading is applicable]
+        # 
+        # For 10 Bit:
+        #   Scale = 30                              [15A - (-15A) = 30]
+        #   Max._Digital_Value_permissible = 1023
+        #   Offset = 15                              [As negative values upto -15 are applivale]
+        # 
         analogValueRange=[]
         maxDigitalValue, scale, offset = self.sensorParameters(ADC_Sensor_Type)
         for digitalValue in digitalValueRange:
