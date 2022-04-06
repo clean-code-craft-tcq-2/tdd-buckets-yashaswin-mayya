@@ -11,7 +11,7 @@ class driven_range:
         maxDigitalValue, scale, offset = self.sensorParameters(ADC_Sensor_Type)
         for digitalValue in digitalValueRange:
             if (0<=digitalValue and digitalValue<=maxDigitalValue):
-                analogValue = (round((scale*digitalValue/maxDigitalValue)-offset))
+                analogValue = abs(round((scale*digitalValue/maxDigitalValue)-offset))
                 analogValueRange.append(analogValue)
         return analogValueRange
     
