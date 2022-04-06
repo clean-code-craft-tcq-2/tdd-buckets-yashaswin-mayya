@@ -21,4 +21,7 @@ class driven_range_test(unittest.TestCase):
         self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([-1,1024], '10Bits')) == {})
         self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([0], '10Bits')) == {'15-15': '1'})
 
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([0,500,1000,1500,2000,2500,3000,3500,4000], '12Bits')) == {'0-2':'3', '4-7': '4', '9-10': '2'})
+        self.assertTrue(driven_range().main(driven_range().convertAnalogToDigital([0,250,500,750,1000], '10Bits')) == {'0-0':'1', '7-8': '2', '14-15': '2'})
+
 unittest.main()
